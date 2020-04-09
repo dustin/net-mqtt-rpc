@@ -8,8 +8,7 @@ module Network.MQTT.RPC (call) where
 import           Control.Concurrent.STM (atomically, newTChanIO, readTChan,
                                          writeTChan)
 import           Control.Monad          (when)
-import           Control.Monad.Catch    (MonadCatch (..), MonadThrow (..),
-                                         bracket, throwM)
+import           Control.Monad.Catch    (bracket, throwM)
 import           Control.Monad.IO.Class (MonadIO (..))
 import qualified Data.ByteString.Lazy   as BL
 import           Data.Text              (Text)
@@ -29,7 +28,7 @@ blToText = TE.decodeUtf8 . BL.toStrict
 -- Note that this client provides no timeouts or retries.  MQTT will
 -- guarantee the request message is delivered to the broker, but if
 -- there's nothing to pick it up, there may never be a response.
-call :: (MonadCatch m, MonadThrow m, MonadIO m) => MQTTClient -> Topic -> BL.ByteString -> m BL.ByteString
+call :: MonadIO m => MQTTClient -> Topic -> BL.ByteString -> m BL.ByteString
 call mc topic req = liftIO do
   r <- newTChanIO
   corr <- BL.fromStrict . UUID.toASCIIBytes <$> randomIO
