@@ -1,5 +1,5 @@
 name:                net-mqtt-rpc
-version:             0.1.0.0
+version:             0.1.1.0
 github:              "dustin/net-mqtt-rpc"
 license:             BSD3
 author:              "Dustin Sallings"
@@ -27,6 +27,7 @@ dependencies:
 - uuid
 - random
 - text
+- exceptions
 
 library:
   source-dirs: src

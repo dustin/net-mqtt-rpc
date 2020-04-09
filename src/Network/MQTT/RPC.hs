@@ -5,11 +5,13 @@
 
 module Network.MQTT.RPC (call) where
 
-import           Control.Concurrent.STM (atomically, newTChanIO,
-                                         readTChan, writeTChan)
-import qualified Control.Exception      as E
+import           Control.Concurrent.STM (atomically, newTChanIO, readTChan,
+                                         writeTChan)
+import           Control.Monad          (when)
+import           Control.Monad.Catch    (MonadCatch (..), MonadThrow (..),
+                                         bracket, throwM)
+import           Control.Monad.IO.Class (MonadIO (..))
 import qualified Data.ByteString.Lazy   as BL
-import Control.Monad (when)
 import           Data.Text              (Text)
 import qualified Data.Text.Encoding     as TE
 import qualified Data.UUID              as UUID
@@ -27,14 +29,14 @@ blToText = TE.decodeUtf8 . BL.toStrict
 -- Note that this client provides no timeouts or retries.  MQTT will
 -- guarantee the request message is delivered to the broker, but if
 -- there's nothing to pick it up, there may never be a response.
-call :: MQTTClient -> Topic -> BL.ByteString -> IO BL.ByteString
-call mc topic req = do
+call :: (MonadCatch m, MonadThrow m, MonadIO m) => MQTTClient -> Topic -> BL.ByteString -> m BL.ByteString
+call mc topic req = liftIO do
   r <- newTChanIO
   corr <- BL.fromStrict . UUID.toASCIIBytes <$> randomIO
   subid <- BL.fromStrict . ("$rpc/" <>) . UUID.toASCIIBytes <$> randomIO
   go corr subid r
 
-  where go theID theTopic r = E.bracket reg unreg rt
+  where go theID theTopic r = bracket reg unreg rt
           where reg = do
                   atomically $ registerCorrelated mc theID (SimpleCallback cb)
                   subscribe mc [(blToText theTopic, subOptions)] mempty
@@ -48,5 +50,5 @@ call mc topic req = do
                     PropResponseTopic theTopic]
                   atomically do
                     connd <- isConnectedSTM mc
-                    when (not connd) $ E.throw (MQTTException "disconnected")
+                    when (not connd) $ throwM (MQTTException "disconnected")
                     readTChan r
