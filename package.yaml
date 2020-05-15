@@ -1,5 +1,5 @@
 name:                net-mqtt-rpc
-version:             0.1.2.0
+version:             0.1.2.1
 github:              "dustin/net-mqtt-rpc"
 license:             BSD3
 author:              "Dustin Sallings"
@@ -21,7 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/dust
 
 dependencies:
 - base >= 4.7 && < 5
-- net-mqtt >= 0.6.2.0 && < 0.7.0.0
+- net-mqtt >= 0.6.2.0 && < 0.8.0.0
 - bytestring
 - stm
 - uuid
