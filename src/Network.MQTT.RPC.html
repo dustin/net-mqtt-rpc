@@ -34,20 +34,20 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span id="line-28"></span><span class="hs-comment">-- Note that this client provides no timeouts or retries.  MQTT will</span><span>
 </span><span id="line-29"></span><span class="hs-comment">-- guarantee the request message is delivered to the broker, but if</span><span>
 </span><span id="line-30"></span><span class="hs-comment">-- there's nothing to pick it up, there may never be a response.</span><span>
-</span><span id="line-31"></span><span id="local-6989586621679091722"><span class="annot"><a href="Network.MQTT.RPC.html#call"><span class="hs-identifier hs-type">call</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679091722"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MQTTClient</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Topic</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BL.ByteString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679091722"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">BL.ByteString</span></span></span><span>
+</span><span id="line-31"></span><span id="local-6989586621679057695"><span class="annot"><a href="Network.MQTT.RPC.html#call"><span class="hs-identifier hs-type">call</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadIO</span></span><span> </span><span class="annot"><a href="#local-6989586621679057695"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MQTTClient</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Topic</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">BL.ByteString</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679057695"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">BL.ByteString</span></span></span><span>
 </span><span id="line-32"></span><span id="call"><span class="annot"><span class="annottext">call :: MQTTClient -&gt; Text -&gt; ByteString -&gt; m ByteString
-</span><a href="Network.MQTT.RPC.html#call"><span class="hs-identifier hs-var hs-var">call</span></a></span></span><span> </span><span id="local-6989586621679091720"><span class="annot"><span class="annottext">mc :: MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span id="local-6989586621679091719"><span class="annot"><span class="annottext">topic :: Text
-</span><a href="#local-6989586621679091719"><span class="hs-identifier hs-var">topic</span></a></span></span><span> </span><span id="local-6989586621679091718"><span class="annot"><span class="annottext">req :: ByteString
-</span><a href="#local-6989586621679091718"><span class="hs-identifier hs-var">req</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; m ByteString
+</span><a href="Network.MQTT.RPC.html#call"><span class="hs-identifier hs-var hs-var">call</span></a></span></span><span> </span><span id="local-6989586621679057693"><span class="annot"><span class="annottext">MQTTClient
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span></span><span> </span><span id="local-6989586621679057692"><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679057692"><span class="hs-identifier hs-var">topic</span></a></span></span><span> </span><span id="local-6989586621679057691"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057691"><span class="hs-identifier hs-var">req</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO ByteString -&gt; m ByteString
 forall (m :: * -&gt; *) a. MonadIO m =&gt; IO a -&gt; m a
 </span><span class="hs-identifier hs-var">liftIO</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-33"></span><span>  </span><span id="local-6989586621679091716"><span class="annot"><span class="annottext">TChan ByteString
-</span><a href="#local-6989586621679091716"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TChan ByteString)
+</span><span id="line-33"></span><span>  </span><span id="local-6989586621679057689"><span class="annot"><span class="annottext">TChan ByteString
+</span><a href="#local-6989586621679057689"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">IO (TChan ByteString)
 forall a. IO (TChan a)
 </span><span class="hs-identifier hs-var">newTChanIO</span></span><span>
-</span><span id="line-34"></span><span>  </span><span id="local-6989586621679091715"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091715"><span class="hs-identifier hs-var">corr</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
+</span><span id="line-34"></span><span>  </span><span id="local-6989586621679057688"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057688"><span class="hs-identifier hs-var">corr</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
 </span><span class="hs-identifier hs-var">BL.fromStrict</span></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString)
 -&gt; (UUID -&gt; ByteString) -&gt; UUID -&gt; ByteString
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
@@ -55,14 +55,15 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-identifier hs-var">UUID.toASCIIBytes</span></span><span> </span><span class="annot"><span class="annottext">(UUID -&gt; ByteString) -&gt; IO UUID -&gt; IO ByteString
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO UUID
-forall a. Random a =&gt; IO a
+forall a (m :: * -&gt; *). (Random a, MonadIO m) =&gt; m a
 </span><span class="hs-identifier hs-var">randomIO</span></span><span>
-</span><span id="line-35"></span><span>  </span><span id="local-6989586621679091711"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091711"><span class="hs-identifier hs-var">subid</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
+</span><span id="line-35"></span><span>  </span><span id="local-6989586621679057684"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057684"><span class="hs-identifier hs-var">subid</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString
 </span><span class="hs-identifier hs-var">BL.fromStrict</span></span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString)
 -&gt; (UUID -&gt; ByteString) -&gt; UUID -&gt; ByteString
 forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
-</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-string">&quot;$rpc/&quot;</span></span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; ByteString
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ByteString
+</span><span class="hs-string">&quot;$rpc/&quot;</span></span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; ByteString
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString)
 -&gt; (UUID -&gt; ByteString) -&gt; UUID -&gt; ByteString
@@ -71,19 +72,19 @@ forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
 </span><span class="hs-identifier hs-var">UUID.toASCIIBytes</span></span><span> </span><span class="annot"><span class="annottext">(UUID -&gt; ByteString) -&gt; IO UUID -&gt; IO ByteString
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="annot"><span class="annottext">IO UUID
-forall a. Random a =&gt; IO a
+forall a (m :: * -&gt; *). (Random a, MonadIO m) =&gt; m a
 </span><span class="hs-identifier hs-var">randomIO</span></span><span>
 </span><span id="line-36"></span><span>  </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; TChan ByteString -&gt; IO ByteString
-</span><a href="#local-6989586621679091710"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091715"><span class="hs-identifier hs-var">corr</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091711"><span class="hs-identifier hs-var">subid</span></a></span><span> </span><span class="annot"><span class="annottext">TChan ByteString
-</span><a href="#local-6989586621679091716"><span class="hs-identifier hs-var">r</span></a></span><span>
+</span><a href="#local-6989586621679057683"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057688"><span class="hs-identifier hs-var">corr</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057684"><span class="hs-identifier hs-var">subid</span></a></span><span> </span><span class="annot"><span class="annottext">TChan ByteString
+</span><a href="#local-6989586621679057689"><span class="hs-identifier hs-var">r</span></a></span><span>
 </span><span id="line-37"></span><span>
-</span><span id="line-38"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679091710"><span class="annot"><span class="annottext">go :: ByteString -&gt; ByteString -&gt; TChan ByteString -&gt; IO ByteString
-</span><a href="#local-6989586621679091710"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679091709"><span class="annot"><span class="annottext">theID :: ByteString
-</span><a href="#local-6989586621679091709"><span class="hs-identifier hs-var">theID</span></a></span></span><span> </span><span id="local-6989586621679091708"><span class="annot"><span class="annottext">theTopic :: ByteString
-</span><a href="#local-6989586621679091708"><span class="hs-identifier hs-var">theTopic</span></a></span></span><span> </span><span id="local-6989586621679091707"><span class="annot"><span class="annottext">r :: TChan ByteString
-</span><a href="#local-6989586621679091707"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO ([Either SubErr QoS], [Property])
+</span><span id="line-38"></span><span>  </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679057683"><span class="annot"><span class="annottext">go :: ByteString -&gt; ByteString -&gt; TChan ByteString -&gt; IO ByteString
+</span><a href="#local-6989586621679057683"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679057682"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057682"><span class="hs-identifier hs-var">theID</span></a></span></span><span> </span><span id="local-6989586621679057681"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057681"><span class="hs-identifier hs-var">theTopic</span></a></span></span><span> </span><span id="local-6989586621679057680"><span class="annot"><span class="annottext">TChan ByteString
+</span><a href="#local-6989586621679057680"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">IO ([Either SubErr QoS], [Property])
 -&gt; (([Either SubErr QoS], [Property])
     -&gt; IO ([UnsubStatus], [Property]))
 -&gt; (([Either SubErr QoS], [Property]) -&gt; IO ByteString)
@@ -92,100 +93,106 @@ forall (m :: * -&gt; *) a c b.
 MonadMask m =&gt;
 m a -&gt; (a -&gt; m c) -&gt; (a -&gt; m b) -&gt; m b
 </span><span class="hs-identifier hs-var">bracket</span></span><span> </span><span class="annot"><span class="annottext">IO ([Either SubErr QoS], [Property])
-</span><a href="#local-6989586621679091706"><span class="hs-identifier hs-var">reg</span></a></span><span> </span><span class="annot"><span class="annottext">([Either SubErr QoS], [Property]) -&gt; IO ([UnsubStatus], [Property])
+</span><a href="#local-6989586621679057679"><span class="hs-identifier hs-var">reg</span></a></span><span> </span><span class="annot"><span class="annottext">([Either SubErr QoS], [Property]) -&gt; IO ([UnsubStatus], [Property])
 forall p. p -&gt; IO ([UnsubStatus], [Property])
-</span><a href="#local-6989586621679091705"><span class="hs-identifier hs-var">unreg</span></a></span><span> </span><span class="annot"><span class="annottext">([Either SubErr QoS], [Property]) -&gt; IO ByteString
+</span><a href="#local-6989586621679057678"><span class="hs-identifier hs-var">unreg</span></a></span><span> </span><span class="annot"><span class="annottext">([Either SubErr QoS], [Property]) -&gt; IO ByteString
 forall p. p -&gt; IO ByteString
-</span><a href="#local-6989586621679091704"><span class="hs-identifier hs-var">rt</span></a></span><span>
-</span><span id="line-39"></span><span>          </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679091706"><span class="annot"><span class="annottext">reg :: IO ([Either SubErr QoS], [Property])
-</span><a href="#local-6989586621679091706"><span class="hs-identifier hs-var hs-var">reg</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="#local-6989586621679057677"><span class="hs-identifier hs-var">rt</span></a></span><span>
+</span><span id="line-39"></span><span>          </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679057679"><span class="annot"><span class="annottext">reg :: IO ([Either SubErr QoS], [Property])
+</span><a href="#local-6989586621679057679"><span class="hs-identifier hs-var hs-var">reg</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-40"></span><span>                  </span><span class="annot"><span class="annottext">STM () -&gt; IO ()
 forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">atomically</span></span><span> </span><span class="annot"><span class="annottext">(STM () -&gt; IO ()) -&gt; STM () -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient -&gt; ByteString -&gt; MessageCallback -&gt; STM ()
 </span><span class="hs-identifier hs-var">registerCorrelated</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091709"><span class="hs-identifier hs-var">theID</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(MQTTClient -&gt; Text -&gt; ByteString -&gt; [Property] -&gt; IO ())
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057682"><span class="hs-identifier hs-var">theID</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">(MQTTClient -&gt; Text -&gt; ByteString -&gt; [Property] -&gt; IO ())
 -&gt; MessageCallback
 </span><span class="hs-identifier hs-var">SimpleCallback</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient -&gt; Text -&gt; ByteString -&gt; [Property] -&gt; IO ()
 forall p p p. p -&gt; p -&gt; ByteString -&gt; p -&gt; IO ()
-</span><a href="#local-6989586621679091701"><span class="hs-identifier hs-var">cb</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679057674"><span class="hs-identifier hs-var">cb</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-41"></span><span>                  </span><span class="annot"><span class="annottext">MQTTClient
 -&gt; [(Text, SubOptions)]
 -&gt; [Property]
 -&gt; IO ([Either SubErr QoS], [Property])
 </span><span class="hs-identifier hs-var">subscribe</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">ByteString -&gt; Text
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">ByteString -&gt; Text
 </span><a href="Network.MQTT.RPC.html#blToText"><span class="hs-identifier hs-var">blToText</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091708"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">SubOptions
+</span><a href="#local-6989586621679057681"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">SubOptions
 </span><span class="hs-identifier hs-var">subOptions</span></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Property]
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-42"></span><span>                </span><span id="local-6989586621679091705"><span class="annot"><span class="annottext">unreg :: p -&gt; IO ([UnsubStatus], [Property])
-</span><a href="#local-6989586621679091705"><span class="hs-identifier hs-var hs-var">unreg</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-42"></span><span>                </span><span id="local-6989586621679057678"><span class="annot"><span class="annottext">unreg :: p -&gt; IO ([UnsubStatus], [Property])
+</span><a href="#local-6989586621679057678"><span class="hs-identifier hs-var hs-var">unreg</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-43"></span><span>                  </span><span class="annot"><span class="annottext">STM () -&gt; IO ()
 forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">atomically</span></span><span> </span><span class="annot"><span class="annottext">(STM () -&gt; IO ()) -&gt; STM () -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient -&gt; ByteString -&gt; STM ()
 </span><span class="hs-identifier hs-var">unregisterCorrelated</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091709"><span class="hs-identifier hs-var">theID</span></a></span><span>
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057682"><span class="hs-identifier hs-var">theID</span></a></span><span>
 </span><span id="line-44"></span><span>                  </span><span class="annot"><span class="annottext">MQTTClient
 -&gt; [Text] -&gt; [Property] -&gt; IO ([UnsubStatus], [Property])
 </span><span class="hs-identifier hs-var">unsubscribe</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">ByteString -&gt; Text
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">ByteString -&gt; Text
 </span><a href="Network.MQTT.RPC.html#blToText"><span class="hs-identifier hs-var">blToText</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091708"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Property]
+</span><a href="#local-6989586621679057681"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Property]
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span>
-</span><span id="line-45"></span><span>                </span><span id="local-6989586621679091701"><span class="annot"><span class="annottext">cb :: p -&gt; p -&gt; ByteString -&gt; p -&gt; IO ()
-</span><a href="#local-6989586621679091701"><span class="hs-identifier hs-var hs-var">cb</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-identifier">_</span><span> </span><span id="local-6989586621679091696"><span class="annot"><span class="annottext">m :: ByteString
-</span><a href="#local-6989586621679091696"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">STM () -&gt; IO ()
+</span><span id="line-45"></span><span>                </span><span id="local-6989586621679057674"><span class="annot"><span class="annottext">cb :: p -&gt; p -&gt; ByteString -&gt; p -&gt; IO ()
+</span><a href="#local-6989586621679057674"><span class="hs-identifier hs-var hs-var">cb</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621679057669"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057669"><span class="hs-identifier hs-var">m</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">STM () -&gt; IO ()
 forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">atomically</span></span><span> </span><span class="annot"><span class="annottext">(STM () -&gt; IO ()) -&gt; STM () -&gt; IO ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">TChan ByteString -&gt; ByteString -&gt; STM ()
 forall a. TChan a -&gt; a -&gt; STM ()
 </span><span class="hs-identifier hs-var">writeTChan</span></span><span> </span><span class="annot"><span class="annottext">TChan ByteString
-</span><a href="#local-6989586621679091707"><span class="hs-identifier hs-var">r</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091696"><span class="hs-identifier hs-var">m</span></a></span><span>
-</span><span id="line-46"></span><span>                </span><span id="local-6989586621679091704"><span class="annot"><span class="annottext">rt :: p -&gt; IO ByteString
-</span><a href="#local-6989586621679091704"><span class="hs-identifier hs-var hs-var">rt</span></a></span></span><span> </span><span class="hs-identifier">_</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="#local-6989586621679057680"><span class="hs-identifier hs-var">r</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057669"><span class="hs-identifier hs-var">m</span></a></span><span>
+</span><span id="line-46"></span><span>                </span><span id="local-6989586621679057677"><span class="annot"><span class="annottext">rt :: p -&gt; IO ByteString
+</span><a href="#local-6989586621679057677"><span class="hs-identifier hs-var hs-var">rt</span></a></span></span><span> </span><span class="annot"><span class="annottext">p
+</span><span class="hs-identifier">_</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-47"></span><span>                  </span><span class="annot"><span class="annottext">MQTTClient
 -&gt; Text -&gt; ByteString -&gt; Bool -&gt; QoS -&gt; [Property] -&gt; IO ()
 </span><span class="hs-identifier hs-var">publishq</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">Text
-</span><a href="#local-6989586621679091719"><span class="hs-identifier hs-var">topic</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091718"><span class="hs-identifier hs-var">req</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span> </span><span class="annot"><span class="annottext">Text
+</span><a href="#local-6989586621679057692"><span class="hs-identifier hs-var">topic</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679057691"><span class="hs-identifier hs-var">req</span></a></span><span> </span><span class="annot"><span class="annottext">Bool
 </span><span class="hs-identifier hs-var">False</span></span><span> </span><span class="annot"><span class="annottext">QoS
 </span><span class="hs-identifier hs-var">QoS2</span></span><span> </span><span class="hs-special">[</span><span>
 </span><span id="line-48"></span><span>                    </span><span class="annot"><span class="annottext">ByteString -&gt; Property
 </span><span class="hs-identifier hs-var">PropCorrelationData</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091709"><span class="hs-identifier hs-var">theID</span></a></span><span class="hs-special">,</span><span>
+</span><a href="#local-6989586621679057682"><span class="hs-identifier hs-var">theID</span></a></span><span class="hs-special">,</span><span>
 </span><span id="line-49"></span><span>                    </span><span class="annot"><span class="annottext">ByteString -&gt; Property
 </span><span class="hs-identifier hs-var">PropResponseTopic</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679091708"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">]</span><span>
+</span><a href="#local-6989586621679057681"><span class="hs-identifier hs-var">theTopic</span></a></span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>                  </span><span class="annot"><span class="annottext">STM ByteString -&gt; IO ByteString
 forall a. STM a -&gt; IO a
 </span><span class="hs-identifier hs-var">atomically</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-51"></span><span>                    </span><span id="local-6989586621679091691"><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679091691"><span class="hs-identifier hs-var">connd</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">MQTTClient -&gt; STM Bool
+</span><span id="line-51"></span><span>                    </span><span id="local-6989586621679057664"><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679057664"><span class="hs-identifier hs-var">connd</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">MQTTClient -&gt; STM Bool
 </span><span class="hs-identifier hs-var">isConnectedSTM</span></span><span> </span><span class="annot"><span class="annottext">MQTTClient
-</span><a href="#local-6989586621679091720"><span class="hs-identifier hs-var">mc</span></a></span><span>
+</span><a href="#local-6989586621679057693"><span class="hs-identifier hs-var">mc</span></a></span><span>
 </span><span id="line-52"></span><span>                    </span><span class="annot"><span class="annottext">Bool -&gt; STM () -&gt; STM ()
 forall (f :: * -&gt; *). Applicative f =&gt; Bool -&gt; f () -&gt; f ()
 </span><span class="hs-identifier hs-var">when</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Bool -&gt; Bool
 </span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">Bool
-</span><a href="#local-6989586621679091691"><span class="hs-identifier hs-var">connd</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(STM () -&gt; STM ()) -&gt; STM () -&gt; STM ()
+</span><a href="#local-6989586621679057664"><span class="hs-identifier hs-var">connd</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(STM () -&gt; STM ()) -&gt; STM () -&gt; STM ()
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">MQTTException -&gt; STM ()
 forall (m :: * -&gt; *) e a. (MonadThrow m, Exception e) =&gt; e -&gt; m a
 </span><span class="hs-identifier hs-var">throwM</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">String -&gt; MQTTException
-</span><span class="hs-identifier hs-var">MQTTException</span></span><span> </span><span class="annot"><span class="hs-string">&quot;disconnected&quot;</span></span><span class="hs-special">)</span><span>
+</span><span class="hs-identifier hs-var">MQTTException</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;disconnected&quot;</span></span><span class="hs-special">)</span><span>
 </span><span id="line-53"></span><span>                    </span><span class="annot"><span class="annottext">TChan ByteString -&gt; STM ByteString
 forall a. TChan a -&gt; STM a
 </span><span class="hs-identifier hs-var">readTChan</span></span><span> </span><span class="annot"><span class="annottext">TChan ByteString
-</span><a href="#local-6989586621679091707"><span class="hs-identifier hs-var">r</span></a></span><span>
+</span><a href="#local-6989586621679057680"><span class="hs-identifier hs-var">r</span></a></span><span>
 </span><span id="line-54"></span></pre></body></html>
