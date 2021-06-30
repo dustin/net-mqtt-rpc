@@ -5,8 +5,7 @@
 
 module Network.MQTT.RPC (call) where
 
-import           Control.Concurrent.STM (atomically, newTChanIO, readTChan,
-                                         writeTChan)
+import           Control.Concurrent.STM (atomically, newTChanIO, readTChan, writeTChan)
 import           Control.Monad          (when)
 import           Control.Monad.Catch    (bracket, throwM)
 import           Control.Monad.IO.Class (MonadIO (..))
@@ -15,6 +14,7 @@ import           Data.Text              (Text)
 import qualified Data.Text.Encoding     as TE
 import qualified Data.UUID              as UUID
 import           Network.MQTT.Client
+import           Network.MQTT.Topic
 import           System.Random          (randomIO)
 
 blToText :: BL.ByteString -> Text
@@ -33,15 +33,16 @@ call mc topic req = liftIO do
   r <- newTChanIO
   corr <- BL.fromStrict . UUID.toASCIIBytes <$> randomIO
   subid <- BL.fromStrict . ("$rpc/" <>) . UUID.toASCIIBytes <$> randomIO
-  go corr subid r
+  Just filt <- pure (mkFilter . blToText $ subid)
+  go corr subid filt r
 
-  where go theID theTopic r = bracket reg unreg rt
+  where go theID theTopic filt r = bracket reg unreg rt
           where reg = do
                   atomically $ registerCorrelated mc theID (SimpleCallback cb)
-                  subscribe mc [(blToText theTopic, subOptions)] mempty
+                  subscribe mc [(filt, subOptions)] mempty
                 unreg _ = do
                   atomically $ unregisterCorrelated mc theID
-                  unsubscribe mc [blToText theTopic] mempty
+                  unsubscribe mc [filt] mempty
                 cb _ _ m _ = atomically $ writeTChan r m
                 rt _ = do
                   publishq mc topic req False QoS2 [
