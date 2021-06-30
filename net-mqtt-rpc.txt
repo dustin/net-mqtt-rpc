@@ -7,7 +7,7 @@
 --   Please see the README on GitHub at
 --   <a>https://github.com/dustin/net-mqtt-rpc#readme</a>
 @package net-mqtt-rpc
-@version 0.1.2.1
+@version 0.2.0.0
 
 module Network.MQTT.RPC
 
