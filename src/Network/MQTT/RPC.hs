@@ -5,20 +5,21 @@
 
 module Network.MQTT.RPC (call) where
 
-import           Control.Concurrent.STM (atomically, newTChanIO, readTChan, writeTChan)
-import           Control.Monad          (when)
-import           Control.Monad.Catch    (bracket, throwM)
-import           Control.Monad.IO.Class (MonadIO (..))
-import qualified Data.ByteString.Lazy   as BL
-import           Data.Text              (Text)
-import qualified Data.Text.Encoding     as TE
-import qualified Data.UUID              as UUID
+import           Control.Concurrent.STM   (atomically, newTChanIO, readTChan, writeTChan)
+import           Control.Monad            (when)
+import           Control.Monad.Catch      (bracket, throwM)
+import           Control.Monad.IO.Class   (MonadIO (..))
+import qualified Data.ByteString.Lazy     as BL
+import           Data.Text                (Text)
+import qualified Data.Text.Encoding       as TE
+import qualified Data.Text.Encoding.Error as TE
+import qualified Data.UUID                as UUID
 import           Network.MQTT.Client
 import           Network.MQTT.Topic
-import           System.Random          (randomIO)
+import           System.Random            (randomIO)
 
 blToText :: BL.ByteString -> Text
-blToText = TE.decodeUtf8 . BL.toStrict
+blToText = TE.decodeUtf8With TE.lenientDecode . BL.toStrict
 
 -- | Send a message to a topic on an MQTT broker with a random
 -- subscription and correlation such that an agent may receive this

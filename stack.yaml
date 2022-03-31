@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-18.0
+resolver: lts-19.1
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -41,7 +41,8 @@ packages:
 #
 # extra-deps:
 extra-deps:
-- net-mqtt-0.8.0.0@sha256:8e7399d782ecd2edc9e58534f58e881a621ebd64fa10f28c3791b5f170df2385,4146
+- net-mqtt-0.8.2.0
+- attoparsec-0.13.2.5@sha256:1b64fc08464d9dc73d80e13aea362410f3c8bca5abfa6831df8821281c3cdfeb,6199
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
