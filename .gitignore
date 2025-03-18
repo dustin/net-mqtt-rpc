@@ -3,3 +3,5 @@
 /net-mqtt-rpc.cabal
 /stack.yaml.lock
 mqtt-rpc.cabal
+.DS_Store
+.direnv
